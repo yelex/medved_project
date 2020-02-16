@@ -6,7 +6,10 @@ def landing(request):
     name = 'CodingMedved'
     form = SubscriberForm(request.POST or None)
 
-    if request.method == 'POST':
-        print(form)
+    if request.method == 'POST' and form.is_valid():
+        # print(request.POST)
+        data = form.cleaned_data
+        print(data['name'])
+        form.save()
         
-    return render(request, 'landing/landing.html', context=locals())
+    return render(request, 'landing.html', context=locals())
