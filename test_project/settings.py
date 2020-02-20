@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'landing',
+    'orders',
+    'products',
 ]
 
 MIDDLEWARE = [
@@ -121,4 +123,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = ''
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media/'
+
 

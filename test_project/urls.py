@@ -20,5 +20,7 @@ from test_project import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('landing.urls'))
+    path('orders/', include('orders.urls')),
+    path('products/', include('products.urls')),
+    path('', include('landing.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
