@@ -1,8 +1,9 @@
+.gitignore
 .idea
 .vscode/
 __pychache__/
 venv
 db.sqlite3
-*.pyc
-*.jpg
-!.gitignore
+\*.pyc
+\*.jpg
+\*.jpeg
