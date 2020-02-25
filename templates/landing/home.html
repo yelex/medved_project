@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="section-top">
+        <img src={% static 'img/slider0.jpg'%} class="img-fluid">
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                {% for product_image in product_images %}
+                <div class='col-3'>
+                    <div class='product-item'>
+                        <div>
+                            <img src='{{ product_image.image.url }}' class='img-fluid'>
+                        </div>
+                            <h5>
+                                {{ product_image.product.name }}
+                            </h5>
+                            <p>
+                                {{ product_image.product.description|truncatechars:50 }}
+                            </p>
+                            <div>
+                                {{ product_image.product.price }} руб.
+                            </div>
+                            <div class="add-to-cart-btn">
+                                <button class="btn btn-success">
+                                    Добавить в корзину
+                                </button>
+                            </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% comment %} <h1>h1. Заголовок bootstrap </h1> {% endcomment %}
+{% endblock %}
