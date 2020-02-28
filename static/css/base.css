@@ -15,6 +15,16 @@ html, body {
     margin-bottom: 0px !important;
 }
 
+/* WRAPPER */
+.wrapper{
+    min-height: 100%;
+}
+
+.wrapper-content{
+    overflow: auto;
+    padding-bottom: 180px; /* must be same height as the footer */
+}
+
 /* PRODUCT CARD */
 .product-item{
     height: 500px;
@@ -44,8 +54,20 @@ html, body {
     padding: 3px;
 }
 
+/* SECTION DELIVERY */
+.section-delivery {
+    height: 300px;
+    background-color: darkseagreen;
+    text-align: center;
+    color: white;
+}
+
 /* FOOTER */
 
 .footer {
-    height: 200px;
+    position: relative;
+    margin-top: -180px; /* negative value of footer height */
+    height: 180px;
+    clear: both;
+    background-color: white;
 }

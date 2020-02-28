@@ -1,6 +1,6 @@
 from django.urls import path, include
-from landing import views
+from products import views
 
 urlpatterns = [
-    # path('', views.landing, name='landing')
+    path('<int:product_id>/', views.product, name='product')
 ]
