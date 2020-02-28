@@ -16,96 +16,42 @@
                     </h1>
                 </div>
                 {% for product_image in product_images %}
-                <div class='col-md-3'>
-                    <div class='product-item'>
-                        <div class='card-image'>
-                            <img src='{{ product_image.image.url }}' class='img-fluid'>
-                        </div>
-                            <h5>
-                                {{ product_image.product.name }}
-                            </h5>
-                            <p>
-                                {{ product_image.product.description|truncatechars:50 }}
-                            </p>
-                            <div>
-                                {{ product_image.product.price }} руб.
-                            </div>
-                            <div class="add-to-cart-btn">
-                                <button class="btn btn-success">
-                                    Добавить в корзину
-                                </button>
-                            </div>
-                    </div>
+                <div class='col-lg-3'>
+                    {% include 'landing/product_item.html' %}
                 </div>
                 {% endfor %}
             </div>
         </div>
     </div>
 
-    <div class="section section2">
+    <div class="section section2 phones-container">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="text-center">
-                        Новые поступления
+                        Телефоны
                     </h1>
                 </div>
-                {% for product_image in product_images %}
-                <div class='col-md-3'>
-                    <div class='product-item'>
-                        <div class='card-image'>
-                            <img src='{{ product_image.image.url }}' class='img-fluid'>
-                        </div>
-                            <h5>
-                                {{ product_image.product.name }}
-                            </h5>
-                            <p>
-                                {{ product_image.product.description|truncatechars:50 }}
-                            </p>
-                            <div>
-                                {{ product_image.product.price }} руб.
-                            </div>
-                            <div class="add-to-cart-btn">
-                                <button class="btn btn-success">
-                                    Добавить в корзину
-                                </button>
-                            </div>
-                    </div>
+                {% for product_image in product_images_photos %}
+                <div class='col-lg-3'>
+                    {% include 'landing/product_item.html' %}
                 </div>
                 {% endfor %}
             </div>
         </div>
     </div>
 
-    <div class="section section3">
+    <div class="section section3 laptops-container">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class='col-lg-12'>
                     <h1 class="text-center">
-                        Новые поступления
+                        Ноутбуки
                     </h1>
                 </div>
-                {% for product_image in product_images %}
-                <div class='col-md-3'>
-                    <div class='product-item'>
-                        <div class='card-image'>
-                            <img src='{{ product_image.image.url }}' class='img-fluid'>
-                        </div>
-                            <h5>
-                                {{ product_image.product.name }}
-                            </h5>
-                            <p>
-                                {{ product_image.product.description|truncatechars:50 }}
-                            </p>
-                            <div>
-                                {{ product_image.product.price }} руб.
-                            </div>
-                            <div class="add-to-cart-btn">
-                                <button class="btn btn-success">
-                                    Добавить в корзину
-                                </button>
-                            </div>
-                    </div>
+                {% for product_image in product_images_laptops %}
+                <div class='col-lg-3'>
+                    {% include 'landing/product_item.html' %}
                 </div>
                 {% endfor %}
             </div>

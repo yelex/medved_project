@@ -5,10 +5,17 @@ html, body {
     font-family: 'Roboto', sans-serif;
 }
 
+/* SLIDER */
 .section-top {
-    margin: 20px;
+    margin: 0px;
 }
 
+/* NAVBAR */
+.navbar {
+    margin-bottom: 0px !important;
+}
+
+/* PRODUCT CARD */
 .product-item{
     height: 500px;
     background-color: white;
@@ -24,4 +31,21 @@ html, body {
     bottom: 5%;
     left: 10%;
     right: 10%
+}
+
+.discount {
+    position: absolute;
+    top: 35%;
+    left: 0;
+    background-color: lightgreen;
+    width: 30%;
+    color: white;
+    font-weight: 700;
+    padding: 3px;
+}
+
+/* FOOTER */
+
+.footer {
+    height: 200px;
 }

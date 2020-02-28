@@ -1,5 +1,5 @@
 from django.contrib import admin
-from products.models import Product, ProductImage
+from products.models import Product, ProductImage, ProductCategory
 
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
@@ -18,6 +18,12 @@ class ProductImageAdmin(admin.ModelAdmin):
     class Meta:
         model = ProductImage
 
+class ProductCategoryAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in ProductCategory._meta.fields]
+
+    class Meta:
+        model = ProductCategory
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(ProductImage, ProductImageAdmin)
+admin.site.register(ProductCategory, ProductCategoryAdmin)
