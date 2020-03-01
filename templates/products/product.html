@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                {% for image in product.productimage_set.all %}
+                    <img src='{{ image.url }}'>
+                {% endfor %}   
+            </div>
+            <div class="col-lg-6"></div>
+        </div>
+    </div>
+    
+{% endblock %}
