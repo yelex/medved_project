@@ -15,6 +15,36 @@ html, body {
     margin-bottom: 0px !important;
 }
 
+.navbar-top {
+    min-height: 10px;
+    height: 30px;
+    background-color: green;
+    border: none;
+}
+
+.navbar-main {
+    background-color: lightgreen !important;
+    padding-left: 100px;
+    padding-right: 100px;
+    height: 50px;
+}
+
+/* BASKET-NAVBAR */
+.basket-container {
+    position: relative;
+    width: 400px;
+    padding: 15px 10px;
+}
+
+.basket-items {
+    position: absolute;
+    top: 52px;
+    width: 100%;
+    background-color: greenyellow;
+    z-index: 10;
+    padding: 10px;
+}
+
 /* WRAPPER */
 .wrapper{
     min-height: 100%;
@@ -62,6 +92,16 @@ html, body {
     color: white;
 }
 
+/* TAB DESCRIPTION */
+.product-description-tabs {
+    padding: 10px;
+}
+
+/* IMAGES IN PRODUCT.HTML */
+.product-image-item {
+    padding: 5px;
+    margin-bottom: 5px;
+}
 /* FOOTER */
 .footer {
     position: relative;
