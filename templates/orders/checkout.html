@@ -7,8 +7,8 @@
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
             <h3 class="text-center">Товары в корзине</h3>
-            <h5 class="text-center">Общая стоимость: {{ request.session.basket.total_amount }} руб.</h5>
-                {{ request.session.basket.products }}
+            <h5 class="text-center">Общая стоимость:  руб.</h5>
+
             <form> {% csrf_token %}
                 <table class="table text-left">
                     <thead>
@@ -23,8 +23,12 @@
                         {% for product_in_basket in products_in_basket %}
                         <tr>
                             <td>{{ product_in_basket.product.name }}</td>
-                            <td><input value="{{ product_in_basket.nmb }}" type="number"></td>
-                            <td>{{ product_in_basket.price_per_item }}</td>
+                            <td><input value="{{ product_in_basket.nmb }}" type="number" class="product-in-basket-nmb"></td>
+                            <td>
+                                <span class="product-price">
+                                    {{ product_in_basket.price_per_item }}
+                                </span>
+                            </td>
                             <td>
                                 <span class="total_product_in_basket_amount">
                                     {{ product_in_basket.total_price }}
