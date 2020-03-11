@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-top">
-  df
+
 </nav>
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-main">
   <a class="navbar-brand" href="#">Project Name</a>
@@ -33,7 +33,7 @@
     <ul class="nav navbar-nav navbar-right">
       <li>
         <div class="basket-container">
-          <a href="">Корзина <span id="basket_total_amount"></span><span id="basket_total_nmb">{% if products_total_nmb %}({{ products_total_nmb }}){% else %}(0){% endif %}</span></a>
+          <a href="{% url 'checkout' %}">Корзина <span id="basket_total_amount"></span><span id="basket_total_nmb">{% if products_total_nmb %}({{ products_total_nmb }}){% else %}(0){% endif %}</span></a>
           <div class="basket-items d-none">
             <ul class="">
               {% for product_in_basket in products_in_basket %}

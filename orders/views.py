@@ -18,12 +18,12 @@ def basket_adding(request):
     # print('product_id: {}\nnmb: {}\nis_delete: {}'.format(product_id, nmb, is_delete))
 
     if is_delete == 'true':
-        print('im here')
+        # print('im here')
         # product_id - ProductInBasket id
         ProductInBasket.objects.filter(id=product_id).update(is_active=False, nmb=nmb)  # product_id - ProductInBasket id
     else:
         # product_id - ProductInBasket.product id
-        print('now im here')
+        # print('now im here')
         new_product, created = ProductInBasket.objects.get_or_create(session_key=session_key,
                                                                      product_id=product_id,
                                                                      defaults={"nmb": nmb, "is_active": True})
@@ -36,7 +36,7 @@ def basket_adding(request):
             # print('new_product.is_active', new_product.is_active)
             new_product.nmb = int(new_product.nmb) + int(nmb)
             new_product.save(force_update=True)
-            print('after save new_product.nmb', new_product.nmb)
+            # print('after save new_product.nmb', new_product.nmb)
 
     # common code for 2 cases
     products_in_basket = ProductInBasket.objects.filter(session_key=session_key, is_active=True)
@@ -57,5 +57,12 @@ def basket_adding(request):
     # {'products_total_nmb': 123, {'id':1, 'name': 'product1', .., 'nmb':3}, ..}
 
 
+def checkout(request):
+    # session_key = request.session.session_key
+    # if not session_key:
+    #     request.session.cycle_key()
 
+    # products_in_basket = ProductInBasket.objects.filter(session_key=session_key, is_active=True)
+
+    return render(request, 'orders/checkout.html', context=locals())
 
