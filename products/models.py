@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class ProductCategory(models.Model):
     name = models.CharField(max_length=64, blank=True, null=True, default=None)
@@ -11,6 +12,7 @@ class ProductCategory(models.Model):
     class Meta:
         verbose_name = 'Категория товара'
         verbose_name_plural = 'Категории товаров'
+
 
 class Product(models.Model):
     name = models.CharField(max_length=128)
