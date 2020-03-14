@@ -2,6 +2,7 @@ from django.db import models
 from products.models import Product
 from django.db.models import signals
 from django.contrib.auth.models import User
+from utils.main import disable_for_loaddata
 # Create your models here.
 
 
@@ -72,6 +73,8 @@ class ProductInOrder(models.Model):
 
         super(ProductInOrder, self).save(*args, **kwargs)
 
+
+@disable_for_loaddata
 def product_in_order_post_save(sender, instance, created, **kwargs):
 
     order = instance.order
