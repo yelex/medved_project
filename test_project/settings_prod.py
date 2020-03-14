@@ -1,5 +1,5 @@
 DEBUG = False
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['134.122.82.169', 'localhost']
 print(DEBUG)
 DATABASES = {
     'default': {
