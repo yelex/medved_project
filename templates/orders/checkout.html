@@ -9,7 +9,31 @@
             <h3 class="text-center">Товары в корзине</h3>
             <h5 class="text-center">Общая стоимость:  руб.</h5>
 
-            <form> {% csrf_token %}
+            <form method='post'> {% csrf_token %}
+         
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group row">
+                            <label for="client_name" class="col-sm-2 col-form-label">Имя</label>
+                            <div class="col-sm-12">
+                                <input type="name" class="form-control" 
+                                name="{{ form.name.html_name }}" id="client_name" 
+                                value="{{ request.POST.name }}" placeholder="Имя">
+                                <span class="form-error">{{ form.name.errors }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group row">
+                            <label for="phone" class="col-sm-2 col-form-label">Телефон</label>
+                            <div class="col-sm-12">
+                                <input type="phone" class="form-control" name="{{ form.phone.html_name }}" 
+                                id="phone" value="{{ request.POST.phone }}" placeholder="Телефон">
+                                <span class="form-error">{{ form.phone.errors }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <table class="table text-left">
                     <thead>
                         <tr>
@@ -23,7 +47,9 @@
                         {% for product_in_basket in products_in_basket %}
                         <tr>
                             <td>{{ product_in_basket.product.name }}</td>
-                            <td><input value="{{ product_in_basket.nmb }}" type="number" class="product-in-basket-nmb"></td>
+                            <td><input value="{{ product_in_basket.nmb }}" 
+                                    type="number" class="product-in-basket-nmb"
+                                    name="product_in_basket_{{ product_in_basket.id }}"></td>
                             <td>
                                 <span class="product-price">
                                     {{ product_in_basket.price_per_item }}
@@ -46,7 +72,6 @@
                 <div class="text-right">
                     <button class="btn btn-success btn-lg" type="submit">Заказать</button>
                 </div>
-
             </form>
         </div>
 

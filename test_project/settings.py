@@ -136,3 +136,8 @@ MEDIA_ROOT = 'media/'
 #     os.path.join(BASE_DIR, "media"),
 # ]
 
+try:
+    from .settings_prod import *
+except:
+    pass
+

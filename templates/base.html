@@ -28,7 +28,7 @@
       {% endblock content%}
 
     </div>
-
+    <form class="d-none" id="form-common" action="{% url 'basket_adding' %}">{% csrf_token %}</form>
     {% include 'footer.html' %}
     
     <!-- Optional JavaScript -->
