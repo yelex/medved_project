@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+IS_DEV = False
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -137,10 +137,9 @@ MEDIA_ROOT = 'media/'
 #     os.path.join(BASE_DIR, "media"),
 # ]
 
-try:
+if IS_DEV:
     from .settings_prod import *
     print('im here')
-except Exception as e:
-    print(e)
+else:
     pass
 
