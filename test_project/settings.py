@@ -69,6 +69,9 @@ TEMPLATES = [
 
                 'orders.context_processors.getting_basket_info',
             ],
+            'libraries': { # Adding this section should work around the issue.
+                        'static': 'django.templatetags.static',
+                    },
         },
     },
 ]
@@ -143,3 +146,15 @@ if IS_DEV:
 else:
     pass
 
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+LOGIN_REDIRECT_URL = '/'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_HOST_USER = 'ane_debug@mail.ru'
+EMAIL_HOST_PASSWORD = 'ane_coworking'
+
+DEFAULT_FROM_EMAIL = 'ane_debug@mail.ru'
+DEFAULT_TO_EMAIL = 'ane_debug@mail.ru'

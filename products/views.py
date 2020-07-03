@@ -12,7 +12,7 @@ def product(request, product_id):
     if not session_key:
         request.session.cycle_key()
 
-    # print(session_key)
+    print(session_key)
 
     return render(request, 'products/product.html', context=locals())
 
