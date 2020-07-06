@@ -24,43 +24,4 @@
         </div>
     </div>
 
-    <div class="section section-delivery">
-        <div>
-            <h3>Free shipping</h3>
-        </div>
-    </div>
-
-    <div class="section section2 phones-container">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <h1 class="text-center">
-                        Телефоны
-                    </h1>
-                </div>
-                {% for product_image in product_images_photos %}
-                <div class='col-sm-3'>
-                    {% include 'landing/product_item.html' %}
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-
-    <div class="section section3 laptops-container">
-        <div class="container">
-            <div class="row">
-                <div class='col-sm-12'>
-                    <h1 class="text-center">
-                        Ноутбуки
-                    </h1>
-                </div>
-                {% for product_image in product_images_laptops %}
-                <div class='col-sm-3'>
-                    {% include 'landing/product_item.html' %}
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
 {% endblock %}
