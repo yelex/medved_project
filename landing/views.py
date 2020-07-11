@@ -5,8 +5,6 @@ from products.models import ProductImage
 # Create your views here.
 from django.core.mail import send_mail
 
-
-
 def landing(request):
     name = 'CodingMedved'
     form = SubscriberForm(request.POST or None)
@@ -24,10 +22,19 @@ def home(request):
     session_key = request.session.session_key
     if not session_key:
         request.session.cycle_key()
-
     print(session_key)
     product_images = ProductImage.objects.filter(is_active=True, is_main=True, product__is_active=True)
-    product_images_photos = product_images.filter(product__category__name='phones')
-    product_images_laptops = product_images.filter(product__category__name='laptops')
-
     return render(request, 'landing/home.html', context=locals())
+
+
+def boucket(request):
+    product_images = ProductImage.objects.filter(is_active=True, is_main=True, product__is_active=True,
+                                                 product__category__name='букеты')
+    return render(request, 'landing/boucket.html', context=locals())
+
+
+def flower_basket(request):
+    product_images = ProductImage.objects.filter(is_active=True, is_main=True, product__is_active=True,
+                                                 product__category__name='корзины')
+    return render(request, 'landing/flowers_basket.html', context=locals())
+

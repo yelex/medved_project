@@ -16,21 +16,17 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500&display=swap" rel="stylesheet">
     
-    <title>e-Commerce Project</title>
+    <title>Flori Pacco</title>
   </head>
   <body>
-
-    <div class='wrapper'>
-
+    <div class='container'>
       {% include 'navbar.html' %}
-
       {% block content %}
       {% endblock content%}
 
-    </div>
     <form class="d-none" id="form-common" action="{% url 'basket_adding' %}">{% csrf_token %}</form>
     {% include 'footer.html' %}
-    
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
