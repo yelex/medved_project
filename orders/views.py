@@ -4,6 +4,7 @@ from orders.models import ProductInBasket, ProductInOrder, Order
 from orders.forms import CheckoutContactForm
 from django.contrib.auth.models import User
 
+
 def basket_adding(request):
     return_dict = dict()
     session_key = request.session.session_key
@@ -12,7 +13,7 @@ def basket_adding(request):
 
     # print(request.POST)
     data = request.POST
-    # print('data: ', data)
+    print('data : ', data)
     product_id = int(data.get("product_id"))
     nmb = int(data.get("nmb"))
     is_delete = data.get("is_delete")
@@ -44,14 +45,19 @@ def basket_adding(request):
     # print('products_in_basket', products_in_basket)
     return_dict["products_in_basket_total_nmb"] = products_in_basket.count()
     return_dict["products"] = []
+    total_cart_sum = 0
 
     for product_in_basket in products_in_basket:
+        print('product_in_basket.is_active', product_in_basket.is_active)
         dict_product = dict()
         dict_product["id"] = product_in_basket.id
         dict_product["name"] = product_in_basket.product.name
         dict_product["price_per_item"] = product_in_basket.price_per_item
         dict_product["nmb"] = product_in_basket.nmb
+        if product_in_basket.is_active:
+            total_cart_sum += product_in_basket.price_per_item * product_in_basket.nmb
         return_dict["products"].append(dict_product)
+    return_dict["total_sum"] = total_cart_sum
     # print('return_dict', return_dict)
     return JsonResponse(return_dict)
     # return dict such as

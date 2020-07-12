@@ -1,31 +1,35 @@
+
 <div class='product-item'>
-    <div class='card-image'>
+    <div class='product-top'>
         <a href="{% url 'product' product_image.product.id %}">
             <img src='{{ product_image.image.url }}' class='img-fluid'>
         </a>
     </div>
+    <div class="product-bottom">
+        <h5 class="product-name">
+            {{ product_image.product.name }}
+        </h5>
+        <h6 class="product-price">
+            {{ product_image.product.price|floatformat }} руб.
+        </h6>
 
-    {% if product_image.product.discount != 0 %}
-    <div class="discount">
-            {{ product_image.product.discount }}%
-    </div>
-    {% endif %}
-    
-    <h5>
-        {{ product_image.product.name }}
-    </h5>
-    <p>
-        {{ product_image.product.description|truncatechars:50 }}
-    </p>
-    <div>
-        {{ product_image.product.price }} руб.
-    </div>
-    <div class="add-to-cart-btn">
-        <button class="btn btn-success">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
-            </svg>
-            В корзину
-        </button>
+        <form class="form-buying-product form-custom" action="{% url 'basket_adding' %}">
+            <div class="form-group change-amount">
+                <label for="number">Кол-во:</label>
+                <input type="number" min="1" max="100" id="number">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-buy" type="submit" id="submit-btn"
+                                        data-product_id = "{{ product_image.product.id }}"
+                                        data-name = "{{ product_image.product.name }}"
+                                        data-price = "{{ product_image.product.price }}"
+                                        data-image = "{{ product_image.product.image.url }}">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                        </svg>
+                        В корзину
+                </button>
+            </div>
+        </form>
     </div>
 </div>

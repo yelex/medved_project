@@ -22,7 +22,7 @@ def home(request):
     session_key = request.session.session_key
     if not session_key:
         request.session.cycle_key()
-    print(session_key)
+    # print(session_key)
     product_images = ProductImage.objects.filter(is_active=True, is_main=True, product__is_active=True)
     return render(request, 'landing/home.html', context=locals())
 
@@ -37,4 +37,10 @@ def flower_basket(request):
     product_images = ProductImage.objects.filter(is_active=True, is_main=True, product__is_active=True,
                                                  product__category__name='корзины')
     return render(request, 'landing/flowers_basket.html', context=locals())
+
+
+def flower_box(request):
+    product_images = ProductImage.objects.filter(is_active=True, is_main=True, product__is_active=True,
+                                                 product__category__name='коробки')
+    return render(request, 'landing/flowers_box.html', context=locals())
 

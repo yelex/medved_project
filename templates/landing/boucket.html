@@ -7,13 +7,13 @@
     <div class="section section1">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-md-12">
                     <h1 class="text-center f-300">
                         Букеты
                     </h1>
                 </div>
                 {% for product_image in product_images %}
-                <div class='col-sm-3'>
+                <div class='col-md-3 d-flex align-items-stretch'>
                     {% include 'landing/product_item.html' %}
                 </div>
                 {% endfor %}

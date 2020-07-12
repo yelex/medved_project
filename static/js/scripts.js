@@ -6,17 +6,13 @@ $(document).ready(function(){
         var data = {};
         data.product_id = product_id;
         data.nmb = nmb;
-        // var csrf_token = $('#form-buying-product [name="csrfmiddlewaretoken"]').val();
-        // if (!csrf_token){
+
         var csrf_token = $('#form-common [name="csrfmiddlewaretoken"]').val();
-        // }
 
         data.csrfmiddlewaretoken = csrf_token;
-        data.is_delete = is_delete
-       
-        var url = form.attr("action");
+        data.is_delete = is_delete;
         console.log(data);
-        console.log('url: ' + url);
+        var url = form.attr("action");
         
         $.ajax({
             url: url,
@@ -26,23 +22,21 @@ $(document).ready(function(){
             cache: true,
             success: function (data) {
 //                data, возвращаемая из views (basket_adding)
-            console.log("OK");
-           console.log(data);
-            $('#basket_total_nmb').text("(" + data.products_in_basket_total_nmb + ")");
-            $('.basket-items ul').empty();
+
+            $('.dropdown-product').remove();
+
             if (data.products_in_basket_total_nmb!=0){
-//                $('#basket_total_nmb').text("(" + data.products_in_basket_total_nmb + ")");
-                console.log(data.products);
-//                $('.basket-items ul').empty();
+                $('#basket_total_nmb').text(" (" + data.products_in_basket_total_nmb + ")");
                 $.each(data.products, function(k, v){
-                $('.basket-items ul').append('<li>' + v.name + ', ' + v.nmb + ' шт. по ' + v.price_per_item + 'руб.  '
+                $('.dropdown-menu').prepend(
+                '<p class="dropdown-item dropdown-product">' + v.name + ', ' + v.nmb + ' шт. по ' + parseFloat(v.price_per_item).toFixed(0) + ' руб.'
               + '<a href="" class="delete-item" data-product_id="' + v.id + '">x</a>'
-                + '</li>');
-                })
+                + '</p>');
+                });
+                $('#total-sum').text('Итого: '+ parseFloat(data.total_sum).toFixed(0) + ' руб.');
+
+                console.log('TOTAL SUM' + data.total_sum);
             };
-
-            $('.basket-items').addClass('d-none');
-
             },
             error: function(){
             console.log("error")
@@ -50,31 +44,16 @@ $(document).ready(function(){
          })
     };
 
-    
+    $(".form-buying-product").each(function(){
+                $(this).on('submit', function(e){
+                    console.log('im here2');
+                    e.preventDefault();
+                    var nmb = $(this).find('#number').val();
+                    var submit_btn = $(this).find('#submit-btn');
+                    var product_id = submit_btn.data('product_id');
 
-    function showingBasket(){
-        $('.basket-items').removeClass('d-none');
-    }
-
-//    $('.basket-container').click(function(e){
-//        e.preventDefault();
-//        showingBasket();
-//    });
-    var form = $('#form-buying-product');
-    form.on('submit', function(e){
-        e.preventDefault();
-        var nmb = $('#number').val();
-        var submit_btn = $('#submit-btn');
-        var product_id = submit_btn.data('product_id');
-//        var product_name = submit_btn.data('name');
-//        var product_price =submit_btn.data('price');
-        console.log(nmb);
-        console.log(product_id);
-        // console.log(product_name);
-        // console.log(product_price);
-        basketUpdating(product_id, nmb, is_delete=false);
-
-    });
+                    basketUpdating(product_id, nmb, is_delete=false);
+                })});
 
     $('.basket-container').mouseover(function(){
         if ($('#basket_total_nmb').text()!='(0)'){
@@ -89,13 +68,6 @@ $(document).ready(function(){
         if ($('#basket_total_nmb').text()!='(0)'){
                     showingBasket();
                 }
-    });
-
-    $('.basket-container').mouseout(function(){
-//        console.log($('#basket_total_nmb').text());
-        if ($('#basket_total_nmb').text()!='(0)'){
-        $('.basket-items').addClass('d-none');
-        }
     });
 
     $(document).on('click', '.delete-item', function(e){
