@@ -94,10 +94,11 @@ def checkout(request):
                                                   total_price=product_in_basket.total_price,
                                                   order=order)
 
-            # print(id)
+            return render(request, 'orders/success_checkout.html', context=locals())
         else:
             print('Form is not valid')
-        print(request.POST)
-        
-    return render(request, 'orders/checkout.html', context=locals())
+            return render(request, 'orders/checkout.html', context=locals())
+
+    else:
+        return render(request, 'orders/checkout.html', context=locals())
 
