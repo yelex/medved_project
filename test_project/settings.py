@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-IS_DEV = False
+IS_DEV = os.getenv('IS_DEV')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -140,10 +140,11 @@ MEDIA_ROOT = 'media/'
 #     os.path.join(BASE_DIR, "media"),
 # ]
 
-if IS_DEV:
+if IS_DEV is not None:
     from .settings_prod import *
-    print('im here')
+    print('is_dev True')
 else:
+    print('is_dev False')
     pass
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
