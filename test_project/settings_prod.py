@@ -1,5 +1,4 @@
 DEBUG = False
-ALLOWED_HOSTS = ['134.122.82.169', 'localhost']
 
 DATABASES = {
     'default': {
