@@ -11,11 +11,13 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import logging
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IS_DEV = os.getenv('IS_DEV')
-print('IS_DEV top:', IS_DEV)
+
+logging.warning(IS_DEV)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -147,6 +149,7 @@ else:
     print('is_dev False')
     pass
 
+print('DEBUG:', DEBUG)
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
 
