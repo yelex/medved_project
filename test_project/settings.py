@@ -15,8 +15,8 @@ import logging
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# IS_DEV = os.getenv('IS_DEV') TODO
-IS_DEV = True
+IS_DEV = os.getenv('IS_DEV')
+# IS_DEV = True
 
 logging.warning(IS_DEV)
 # Quick-start development settings - unsuitable for production
@@ -143,11 +143,11 @@ MEDIA_ROOT = 'media/'
 #     os.path.join(BASE_DIR, "media"),
 # ]
 
-if IS_DEV is not None:
+if IS_DEV is None:
     from .settings_prod import *
-    print('is_dev True')
-else:
     print('is_dev False')
+else:
+    print('is_dev True')
     pass
 
 print('DEBUG:', DEBUG)
