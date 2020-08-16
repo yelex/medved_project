@@ -24,7 +24,7 @@ $(document).ready(function(){
 //                data, возвращаемая из views (basket_adding)
 
             $('.dropdown-product').remove();
-
+        
             if (data.products_in_basket_total_nmb!=0){
                 $('#basket_total_nmb').text(" (" + data.products_in_basket_total_nmb + ")");
                 $.each(data.products, function(k, v){
