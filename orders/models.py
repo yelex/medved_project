@@ -26,9 +26,9 @@ class Order(models.Model):
     customer_email = models.EmailField(blank=True, null=True)
     customer_name = models.CharField(max_length=128)
     customer_phone = models.CharField(max_length=48, blank=True, null=True)
-    customer_address = models.CharField(max_length=128, blank=True, null=True, default="Укажите адрес доставки")
+    customer_address = models.CharField(max_length=128, blank=True, null=True)
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
-
+    
     comments = models.TextField(blank=True, null=True, default=None)
 
     created = models.DateTimeField(auto_now_add=True, auto_now=False)

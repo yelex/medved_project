@@ -48,7 +48,6 @@ def basket_adding(request):
     total_cart_sum = 0
 
     for product_in_basket in products_in_basket:
-        print('product_in_basket.is_active', product_in_basket.is_active)
         dict_product = dict()
         dict_product["id"] = product_in_basket.id
         dict_product["name"] = product_in_basket.product.name
@@ -74,7 +73,7 @@ def checkout(request):
     if request.POST:
         if form.is_valid():
             data = request.POST
-            name = data.get("name", "some_name")
+            name = data["name"]
             phone = data["phone"]
             # print('yes')
             user, created = User.objects.get_or_create(username=phone, defaults={"first_name": name})
@@ -85,7 +84,7 @@ def checkout(request):
                 if name.startswith('product_in_basket'):
                     product_in_basket_id = name.split('_')[-1]
                     product_in_basket = ProductInBasket.objects.get(id=product_in_basket_id)
-                    print(type(value))
+
                     product_in_basket.nmb = value
                     product_in_basket.order = order
                     product_in_basket.save(force_update=True)
