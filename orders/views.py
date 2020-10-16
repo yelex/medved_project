@@ -71,33 +71,36 @@ def checkout(request):
     products_in_basket = ProductInBasket.objects.filter(session_key=session_key, is_active=True)
     form = CheckoutContactForm(request.POST or None)
     if request.POST:
-        if form.is_valid():
-            data = request.POST
-            name = data["name"]
-            phone = data["phone"]
-            # print('yes')
-            user, created = User.objects.get_or_create(username=phone, defaults={"first_name": name})
+        print(request.POST)
+        # if form.is_valid():
+        #     data = request.POST
+        #     name = data["name"]
+        #     phone = data["phone"]
+        #     # print('yes')
+        #     user, created = User.objects.get_or_create(username=phone, defaults={"first_name": name})
+        #
+        #     order = Order.objects.create(user=user, customer_phone=phone, customer_name=name, status_id=1)
+        #
+        #     for name, value in data.items():
+        #         if name.startswith('product_in_basket'):
+        #             product_in_basket_id = name.split('_')[-1]
+        #             product_in_basket = ProductInBasket.objects.get(id=product_in_basket_id)
+        #
+        #             product_in_basket.nmb = value
+        #             product_in_basket.order = order
+        #             product_in_basket.save(force_update=True)
+        #             ProductInOrder.objects.create(product=product_in_basket.product, nmb=product_in_basket.nmb,
+        #                                           price_per_item=product_in_basket.price_per_item,
+        #                                           total_price=product_in_basket.total_price,
+        #                                           order=order)
 
-            order = Order.objects.create(user=user, customer_phone=phone, customer_name=name, status_id=1)
-            
-            for name, value in data.items():
-                if name.startswith('product_in_basket'):
-                    product_in_basket_id = name.split('_')[-1]
-                    product_in_basket = ProductInBasket.objects.get(id=product_in_basket_id)
-
-                    product_in_basket.nmb = value
-                    product_in_basket.order = order
-                    product_in_basket.save(force_update=True)
-                    ProductInOrder.objects.create(product=product_in_basket.product, nmb=product_in_basket.nmb,
-                                                  price_per_item=product_in_basket.price_per_item,
-                                                  total_price=product_in_basket.total_price,
-                                                  order=order)
-
-            return render(request, 'orders/success_checkout.html', context=locals())
-        else:
-            print('Form is not valid')
-            return render(request, 'orders/checkout.html', context=locals())
+            # return render(request, 'orders/success_checkout.html', context=locals())
+        return render(request, 'orders/checkout.html', context=locals())
+        # else:
+        #     print('Form is not valid')
+        #     return render(request, 'orders/checkout.html', context=locals())
 
     else:
         return render(request, 'orders/checkout.html', context=locals())
+
 

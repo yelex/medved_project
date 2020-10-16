@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IS_DEV = os.getenv('IS_DEV')
 # IS_DEV = True
 
-logging.warning(IS_DEV)
+# logging.warning(IS_DEV)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 

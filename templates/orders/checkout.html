@@ -5,14 +5,11 @@
 {% block content %}
 
 
-    <div class="row">
+    <div class="row py-2">
         <div class="col-lg-8 offset-lg-2">
 
-<!--                <h3 class="text-center py-2">Товары в корзине</h3>-->
-
-
             <form method='post'> {% csrf_token %}
-
+<!--                Корзина-->
                 <table class="table text-left">
                     <thead>
                         <tr>
@@ -48,39 +45,157 @@
                     <b>Сумма заказа: </b> <span id="total_basket_amount"></span>
                 </div>
                 <hr>
-                <div class="row">
 
+                <div class="row">
                     <div class="col-lg-12">
-                        <h3 class="text-left py-2">Заказчик</h3>
-                        <div class="form-group row">
-                            <label for="client_name" class="col-sm-2 col-form-label">Имя</label>
-                            <div class="col-sm-12">
-                                <input type="name" class="form-control"
-                                name="{{ form.name.html_name }}" id="client_name"
-                                value="{{ request.POST.name }}" placeholder="Имя">
-                                <span class="form-error">{{ form.name.errors }}</span>
-                            </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="note">
+                          <label class="form-check-label" for="note">
+                            Записка к букету
+                          </label>
+                        </div>
+                        <div class="form-group note py-2 d-none">
+                            <textarea class="form-control"
+                                      name="{{ form.note.html_name }}" rows="3"></textarea>
                         </div>
                     </div>
+                </div>
+<!--                Информация о доставке-->
+                <hr>
+                <div class="row">
                     <div class="col-lg-12">
-                        <div class="form-group row">
-                            <label for="phone" class="col-sm-2 col-form-label">Телефон</label>
-                            <div class="col-sm-12">
-                                <input type="phone" class="form-control" name="{{ form.phone.html_name }}"
-                                id="phone" value="{{ request.POST.phone }}" placeholder="Телефон">
-                                <span class="form-error">{{ form.phone.errors }}</span>
+                        <h3 class="text-left py-2">Способ получения</h3>
+                        <div class="form-group">
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="{{ form.is_delivery.html_name }}" id="delivery1" value="true" checked>
+                              <label class="form-check-label" for="delivery1">
+                                Доставка курьером
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="{{ form.is_delivery.html_name }}" id="delivery2" value="false">
+                              <label class="form-check-label" for="delivery2">
+                                Самовывоз (около м. Рижская)
+                              </label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <hr>
-                <div class="text-right">
+
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <h3 class="text-left py-2">Заказчик</h3>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="client_name">Имя:</label>
+                                        <input type="text" class="form-control"
+                                        name="{{ form.name.html_name }}" id="client_name"
+                                        value="{{ request.POST.name }}">
+                                        <span class="form-error">{{ form.name.errors }}</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="phone">Номер телефона:</label>
+                                        <input type="text" class="form-control" name="{{ form.phone.html_name }}"
+                                        id="phone" value="{{ request.POST.phone }}" >
+                                        <span class="form-error">{{ form.phone.errors }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="false"
+                                 id="otherPerson" name="is_other_person">
+                          <label class="form-check-label" for="otherPerson">
+                            Получатель - другой человек
+                          </label>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="delivery-container">
+                            <h3 class="text-left py-2">Доставка</h3>
+                            <div class="row">
+                                <div class="col-lg-6 name_other d-none">
+                                    <div class="form-group">
+                                        <label for="name_other">Имя получателя:</label>
+                                        <input type="text" class="form-control"
+                                        name="{{ form.name_other.html_name }}" id="name_other"
+                                        value="{{ request.POST.name_other }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 phone_other d-none">
+                                    <div class="form-group">
+                                        <label for="phone_other">Номер телефона получателя:</label>
+                                        <input type="text" class="form-control" name="{{ form.phone_other.html_name }}"
+                                        id="phone_other" value="{{ request.POST.phone_other }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="delivery_address">
+                                    Адрес доставки: город, улица, номер дома, подъезда, квартиры
+                                </label>
+                                <input type="text" class="form-control"
+                                name="{{ form.delivery_address.html_name }}" id="delivery_address"
+                                value="{{ request.POST.delivery_address }}">
+                                <span class="form-error">{{ form.delivery_address.errors }}</span>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group date">
+                                        <label for="delivery_date">
+                                            Дата доставки:
+                                        </label>
+                                        <input type="text" class="form-control"
+                                        name="{{ form.delivery_date.html_name }}" id="delivery_date"
+                                        value="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="delivery_time">Время доставки:</label>
+                                        <select class="form-control" id="delivery_time">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Комментарий к заказу"
+                                          name="{{ form.comments.html_name }}" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="pickup-container d-none">
+                            <h3 class="text-left py-2">Самовывоз</h3>
+<!--                            <div class="row">-->
+<!--                                <div class="col-lg-6">-->
+<!--                                    <div class="form-group">-->
+<!--                                        <input type="text" class="form-control"-->
+<!--                                        name="{{ form.name_other.html_name }}" id="name_other"-->
+<!--                                        value="{{ request.POST.name_other }}" placeholder="Имя получателя">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                -->
+<!--                            </div>-->
+                        </div>
+                    </div>
+
+                    </div>
+
+                <div class="text-right py-2">
                     <button class="btn btn-primary btn-lg" type="submit">Заказать</button>
                 </div>
             </form>
         </div>
 
+        </div>
     </div>
-</div>
 
 {% endblock %}

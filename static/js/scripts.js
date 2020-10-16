@@ -1,6 +1,4 @@
 $(document).ready(function(){
-    
-
     function basketUpdating(product_id, nmb, is_delete){
         var form = $('#form-common');
         var data = {};
@@ -44,22 +42,57 @@ $(document).ready(function(){
          })
     };
 
-    $(".form-buying-product").each(function(){
-                $(this).on('submit', function(e){
-                    console.log('im here2');
-                    e.preventDefault();
-                    var nmb = $(this).find('#number').val();
-                    var submit_btn = $(this).find('#submit-btn');
-                    var product_id = submit_btn.data('product_id');
+   $('#note').change(function() {
+        if(this.checked) {
+            $('.note').removeClass('d-none');
+        }
+        else {
+            $('.note').addClass('d-none');
+        }
+        });
 
-                    basketUpdating(product_id, nmb, is_delete=false);
-                })});
+   $('#otherPerson').change(function() {
+        if(this.checked) {
+              $(this).val('true');
+              $('.name_other').removeClass('d-none');
+              $('.phone_other').removeClass('d-none');
+        }
+        else {
+              $(this).val('false');
+              $('.name_other').addClass('d-none');
+              $('.phone_other').addClass('d-none');
+        }
+        });
+
+//  FIXME самовывоз
+//   $('#delivery2').change(function() {
+//        if(this.checked) {
+//              $(this).val('true');
+//              $('.name_other').removeClass('d-none');
+//              $('.phone_other').removeClass('d-none');
+//        }
+//        else {
+//              $(this).val('false');
+//              $('.name_other').addClass('d-none');
+//              $('.phone_other').addClass('d-none');
+//        }
+//        });
+
+    $(".form-buying-product").each(function(){
+        $(this).on('submit', function(e){
+            console.log('im here2');
+            e.preventDefault();
+            var nmb = $(this).find('#number').val();
+            var submit_btn = $(this).find('#submit-btn');
+            var product_id = submit_btn.data('product_id');
+
+            basketUpdating(product_id, nmb, is_delete=false);
+        })});
 
     $('.basket-container').mouseover(function(){
         if ($('#basket_total_nmb').text()!='(0)'){
             showingBasket();
         }
-
     });
 
     $('.basket-container').hover(function(){
@@ -78,7 +111,7 @@ $(document).ready(function(){
 
         basketUpdating(product_id, nmb, is_delete=true);
     });
-    
+
     function calculatingBasketAmount(){
         var total_basket_amount = 0;
         $('.total_product_in_basket_amount').each(function(){
@@ -97,4 +130,56 @@ $(document).ready(function(){
     });
 
     calculatingBasketAmount();
-});
+    $.datepicker.regional['ru'] = {
+        closeText: 'Закрыть',
+        prevText: 'Предыдущий',
+        nextText: 'Следующий',
+        currentText: 'Сегодня',
+        monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+        monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'],
+        dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
+        dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
+        dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+        weekHeader: 'Не',
+        dateFormat: 'dd.mm.yy',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: ''
+    };
+    $.datepicker.setDefaults($.datepicker.regional['ru']);
+    
+    $("#delivery_date").datepicker({
+        onSelect: function(dateText){
+                    console.log("Selected date: " + dateText + "; input's current value: " + this.value);
+                    calculateTimeDelivery(dateText);
+                },
+		minDate: 0
+	});
+
+	function calculateTimeDelivery(dateText){
+	    var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        var hrs = String(today.getHours());
+        console.log(hrs);
+        today = dd + '.' + mm + '.' + yyyy;
+        if (today==dateText){
+            minTime = parseInt(hrs);
+        } else {
+            minTime = '0';
+        };
+        var i;
+        $('#delivery_time').empty();
+        for (i = minTime; i < 24; i++) {
+        $('#delivery_time').append(
+            '<option> C ' + String(i).padStart(2, '0') + ':00 до ' + String(i+1).padStart(2, '0') + ':00 </option>'
+           )};
+
+        console.log(minTime);
+
+        };
+    })
+
+

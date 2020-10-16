@@ -6,12 +6,12 @@
         </a>
     </div>
     <div class="product-bottom">
-        <h5 class="product-name">
+        <div class="product-name">
             {{ product_image.product.name }}
-        </h5>
-        <h6 class="product-price">
+        </div>
+        <div class="product-price f-300">
             {{ product_image.product.price|floatformat }} руб.
-        </h6>
+        </div>
 
         <form class="form-buying-product form-custom" action="{% url 'basket_adding' %}">
             <div class="form-group change-amount">
@@ -19,7 +19,7 @@
                 <input type="number" min="1" max="100" id="number">
             </div>
             <div class="form-group">
-                <button class="btn btn-primary btn-buy" type="submit" id="submit-btn"
+                <button class="btn btn-buy btn-flori text-flori f-300" type="submit" id="submit-btn"
                                         data-product_id = "{{ product_image.product.id }}"
                                         data-name = "{{ product_image.product.name }}"
                                         data-price = "{{ product_image.product.price }}"
