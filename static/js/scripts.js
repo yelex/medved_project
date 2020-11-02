@@ -180,6 +180,17 @@ $(document).ready(function(){
         console.log(minTime);
 
         };
+
     })
 
+//        TEST NAVBAR
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+//        END
 
