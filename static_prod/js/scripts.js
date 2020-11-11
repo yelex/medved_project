@@ -24,7 +24,7 @@ $(document).ready(function(){
             $('.dropdown-product').remove();
         
             if (data.products_in_basket_total_nmb!=0){
-                $('#basket_total_nmb').text(" (" + data.products_in_basket_total_nmb + ")");
+                $('#basket_total_nmb').text(data.products_in_basket_total_nmb);
                 $.each(data.products, function(k, v){
                 $('.dropdown-menu').prepend(
                 '<p class="dropdown-item dropdown-product">' + v.name + ', ' + v.nmb + ' шт. по ' + parseFloat(v.price_per_item).toFixed(0) + ' руб.'
@@ -186,6 +186,7 @@ $(document).ready(function(){
 //        TEST NAVBAR
 function myFunction() {
   var x = document.getElementById("myTopnav");
+
   if (x.className === "topnav") {
     x.className += " responsive";
   } else {
