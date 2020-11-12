@@ -192,9 +192,14 @@ p {
 .product-top {
     display: block;
 }
+
+.product-bottom {
+    font-size: 20px;
+}
+
 .product-name {
     display: block;
-    height: 75px;
+    height: auto;
     margin: 5%;
     font-size: 20px;
 }
@@ -373,6 +378,15 @@ p {
 
 .thanks {
     height: 400px;
+}
+
+.custom-bottom {
+    position: absolute;
+    bottom: 0.5px;
+}
+
+.form-check {
+    margin-bottom: 5px;
 }
 
 /* FOOTER */

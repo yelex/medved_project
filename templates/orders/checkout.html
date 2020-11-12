@@ -49,7 +49,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="note">
+                          <input class="form-check-input custom-bottom" type="checkbox" value="" id="note">
                           <label class="form-check-label" for="note">
                             Записка к букету
                           </label>
@@ -67,13 +67,13 @@
                         <h3 class="text-left py-2">Способ получения</h3>
                         <div class="form-group">
                             <div class="form-check">
-                              <input class="form-check-input" type="radio" name="{{ form.is_delivery.html_name }}" id="delivery1" value="true" checked>
+                              <input class="form-check-input custom-bottom" type="radio" name="{{ form.is_delivery.html_name }}" id="delivery1" value="true" checked>
                               <label class="form-check-label" for="delivery1">
                                 Доставка курьером
                               </label>
                             </div>
                             <div class="form-check">
-                              <input class="form-check-input" type="radio" name="{{ form.is_delivery.html_name }}" id="delivery2" value="false">
+                              <input class="form-check-input custom-bottom" type="radio" name="{{ form.is_delivery.html_name }}" id="delivery2" value="false">
                               <label class="form-check-label" for="delivery2">
                                 Самовывоз (около м. Рижская)
                               </label>
@@ -107,7 +107,7 @@
                             </div>
                         </div>
                         <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="false"
+                          <input class="form-check-input custom-bottom" type="checkbox" value="false"
                                  id="otherPerson" name="is_other_person">
                           <label class="form-check-label" for="otherPerson">
                             Получатель - другой человек
@@ -174,16 +174,6 @@
                         </div>
                         <div class="pickup-container d-none">
                             <h3 class="text-left py-2">Самовывоз</h3>
-<!--                            <div class="row">-->
-<!--                                <div class="col-lg-6">-->
-<!--                                    <div class="form-group">-->
-<!--                                        <input type="text" class="form-control"-->
-<!--                                        name="{{ form.name_other.html_name }}" id="name_other"-->
-<!--                                        value="{{ request.POST.name_other }}" placeholder="Имя получателя">-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                -->
-<!--                            </div>-->
                         </div>
                     </div>
 
