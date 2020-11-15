@@ -1,3 +1,6 @@
+import logging, os
+IS_DEV = os.getenv('IS_DEV')
+logging.warning(IS_DEV)
 DEBUG = False
 
 DATABASES = {
