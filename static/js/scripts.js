@@ -85,7 +85,7 @@ $(document).ready(function(){
             var nmb = $(this).find('#number').val();
             var submit_btn = $(this).find('#submit-btn');
             var product_id = submit_btn.data('product_id');
-
+            console.log(nmb + " " + product_id);
             basketUpdating(product_id, nmb, is_delete=false);
         })});
 

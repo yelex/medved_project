@@ -4,21 +4,25 @@
 
 {% block content %}
 
-    <div class="section section1">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 py-2 header-custom">
-                    <div class="text-center f-200">
-                        Популярные товары
+<div id="catalog">
+    <div class="content">
+        <div class="content_padding">
+            <div class="catalog_head">
+                <h1 class="head_main_h_first">Популярные товары</h1>
+            </div>
+            <div class="catalog_block">
+                <div class="catalog_middle">
+                    <div class="catalog_content">
+                        
+                        {% for product_image in product_images %}
+                            {% include 'landing/product_item.html' %}
+                        {% endfor %}
+                        
                     </div>
                 </div>
-                {% for product_image in product_images %}
-                <div class="col-lg-3 col-md-4 col-12 d-flex align-items-stretch">
-                    {% include 'landing/product_item.html' %}
-                </div>
-                {% endfor %}
             </div>
         </div>
     </div>
+</div>
 
 {% endblock %}

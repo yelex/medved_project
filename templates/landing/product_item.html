@@ -1,5 +1,23 @@
+<div class="catalog_item">
+    <a href="{% url 'product' product_image.product.id %}" class="catalog_border">
+        <img src="{{ product_image.image.url }}" alt="" class="img-fluid">
+        <span class="catalog_label">
+        </span>
+        <span class="catalog_description">
+            <span class="catalog_title">{{ product_image.product.name|truncatechars:32 }}</span>
+            <span class="catalog_flowers">{{ product_image.product.description|truncatechars:25 }}
+            </span>
+            <span class="catalog_price">
+                <span class="catalog_price_now">{{ product_image.product.price|floatformat }} ₽</span>
+            </span>
+            <span class="catalog_button">
+                <span>Купить</span>
+            </span>
+        </span>
+    </a>
+</div>
 
-<div class='product-item'>
+{% comment %} <div class='product-item'>
     <div class='product-top'>
         <a href="{% url 'product' product_image.product.id %}">
             <img src='{{ product_image.image.url }}' class='img-fluid'>
@@ -32,4 +50,4 @@
             </div>
         </form>
     </div>
-</div>
+</div> {% endcomment %}

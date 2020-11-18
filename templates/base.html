@@ -27,16 +27,16 @@
     <title>Flori Pacco</title>
   </head>
   <body>
-    
-    {% include 'navbar.html' %}
-    <div class='container pt-3'>
+    {% include 'header.html' %}
+    <div id="main">
+      <div id='container'>
+      {% include 'navbar.html' %}
       {% block content %}
       {% endblock content%}
-
-    <form class="d-none" id="form-common" action="{% url 'basket_adding' %}">{% csrf_token %}</form>
-    {% include 'footer.html' %}
+      <form class="d-none" id="form-common" action="{% url 'basket_adding' %}">{% csrf_token %}</form>
+      {% include 'footer.html' %}
+      </div>
     </div>
-    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
