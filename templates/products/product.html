@@ -3,6 +3,29 @@
 {% load static %}
 
 {% block content %}
+
+<!--<div id="buket">-->
+<!--    <div class="content">-->
+<!--        <div class="content_padding">-->
+<!--            <div class="head_inside_block">-->
+<!--                <h1 class="head_inside">-->
+<!--                    {{ product.name }}-->
+<!--                </h1>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <form id="form-buying-product" class="form-inline" action="{% url 'basket_adding' %}"> {% csrf_token %}-->
+<!--                    <div class="buket_middle">-->
+<!--                        <div class="buket_col">-->
+<!--                            <div class="buket_img">-->
+<!--                                <img srcset="{{ main_image.image.url }}" class="buket_img_main" alt="{{ product.name }}">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
@@ -10,7 +33,7 @@
                 <div class="product-image-item">
                     <img src='{{ image_item.image.url }}' class="img-fluid">
                 </div>
-                {% endfor %}   
+                {% endfor %}
             </div>
             <div class="col-lg-6">
                 <h1 class="text-center">
@@ -58,8 +81,7 @@
                             <button class="btn btn-success btn-buy" type="submit" id="submit-btn"
                                     data-product_id = "{{ product.id }}"
                                     data-name = "{{ product.name }}"
-                                    data-price = "{{ product.price }}"
-                                    data-image = "{{ product.image.url }}">
+                                    data-price = "{{ product.price }}">
                                 Купить
                             </button>
                         </div>

@@ -486,6 +486,70 @@ html, body {
   color: #fff;
 }
 
+#buket {
+  padding: 0px 0 0px;
+  font-size: 0;
+  margin-top: 26px;
+}
+
+.head_hr_sm {
+  display: none;
+  position: relative;
+  height: 1px;
+  border: 0;
+  background: #dcdcdc;
+  left: 0;
+  top: -7px;
+  right: 0;
+  z-index: 18;
+}
+
+.head_inside_block {
+  position: relative;
+  padding-bottom: 0px;
+}
+
+.head_inside {
+  position: relative;
+  display: inline-block;
+  background: #f7f7f7;
+  font-size: 36px;
+  padding: 0 20px 20px 0;
+  z-index: 19;
+  font-weight: 500;
+}
+
+.buket_middle {
+  width: 100%;
+  float: left;
+  margin-bottom: 35px;
+}
+
+.buket_col {
+  min-height: 10px;
+  width: 50%;
+}
+
+.buket_col, .buket_col_full {
+  display: inline-block;
+  font-size: 16px;
+  vertical-align: top;
+}
+
+.buket_img {
+  position: relative;
+  margin: 0 30px 0 0;
+  border-radius: 3px;
+}
+
+.buket_img img {
+  display: block;
+  width: 100%;
+  max-width: 570px;
+  border-radius: 3px;
+  border: 1px #e9e9e9 solid;
+}
+
 @media (max-width: 930px) and (min-width: 0){
   #header_menu a:first-child {
       padding: 0 5px 0 0;

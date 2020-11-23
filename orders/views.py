@@ -11,7 +11,7 @@ def basket_adding(request):
     if not session_key:
         request.session.cycle_key()
 
-    # print(request.POST)
+    print(request.POST)
     data = request.POST
     print('data : ', data)
     product_id = int(data.get("product_id"))
