@@ -765,6 +765,10 @@ html, body {
       margin-left: 10%;
       width: 40%;
   }
+
+  .buket_form_price .buket_price {
+    font-size: 26px;
+   }
 }
 
 @media (max-width: 930px) and (min-width: 0){
