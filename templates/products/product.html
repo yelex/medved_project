@@ -4,91 +4,129 @@
 
 {% block content %}
 
-<!--<div id="buket">-->
-<!--    <div class="content">-->
-<!--        <div class="content_padding">-->
-<!--            <div class="head_inside_block">-->
-<!--                <h1 class="head_inside">-->
-<!--                    {{ product.name }}-->
-<!--                </h1>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--                <form id="form-buying-product" class="form-inline" action="{% url 'basket_adding' %}"> {% csrf_token %}-->
-<!--                    <div class="buket_middle">-->
-<!--                        <div class="buket_col">-->
-<!--                            <div class="buket_img">-->
-<!--                                <img srcset="{{ main_image.image.url }}" class="buket_img_main" alt="{{ product.name }}">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                {% for image_item in product.productimage_set.all %}
-                <div class="product-image-item">
-                    <img src='{{ image_item.image.url }}' class="img-fluid">
-                </div>
-                {% endfor %}
-            </div>
-            <div class="col-lg-6">
-                <h1 class="text-center">
+<div id="buket">
+    <div class="content">
+        <div class="content_padding">
+            <div class="head_inside_block">
+                <h1 class="head_inside">
                     {{ product.name }}
                 </h1>
-                <div class="">
-                    <p>
-                        Price: {{ product.price }}
-                    </p>
-                </div>
-
-                <!--Nav tabs-->
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                  <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#description" role="tab" aria-controls="home" aria-selected="true">
-                        Описание
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#delivery" role="tab" aria-controls="profile" aria-selected="false">
-                        Доставка
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-                  </li>
-                </ul>
-
-<!--                Tab content-->
-                <div class="tab-content product-description-tabs" id="myTabContent">
-                  <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="home-tab">
-                      {{ product.description }}
-                  </div>
-                  <div class="tab-pane fade" id="delivery" role="tabpanel" aria-labelledby="profile-tab">
-                      <h3>Как мы делаем доставку?</h3>
-                  </div>
-                  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
-                </div>
-                <div>
-                    <form id="form-buying-product" class="form-inline" action="{% url 'basket_adding' %}"> {% csrf_token %}
-                        <div class="form-group">
-                            <input type="number" class="form-control" name="number" id="number">
+            </div>
+            <div style="padding-bottom: 25px;">
+                <form id="form-buying-product" action="{% url 'basket_adding' %}"> {% csrf_token %}
+                    <div class="buket_middle">
+                        <div class="buket_col">
+                            <div class="buket_img">
+                                <img srcset="{{ main_image.image.url }}" class="buket_img_main placeholder" alt="{{ product.name }}">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <button class="btn btn-success btn-buy" type="submit" id="submit-btn"
-                                    data-product_id = "{{ product.id }}"
-                                    data-name = "{{ product.name }}"
-                                    data-price = "{{ product.price }}">
-                                Купить
-                            </button>
+                    </div>
+                    <div class="buket_filter">
+                        <div class="stop">
+                            <div class="buket_col_full">
+                                <div class="buket_form buket_form_white_border">
+                                    <div class="buket_form_info">
+                                        <div class="buket_form_top_desc">
+                                            <b>СОСТАВ:</b>
+                                            <span>{{ product.contain }}</span>
+                                        </div>
+                                        <div class="buket_form_top_desc_short">
+                                            <b>ОПИСАНИЕ:</b>
+                                            <span>
+                                                {{ product.description }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="buket_form_price">
+                                        <div class="buket_form_col1">
+                                            <p><b>ЦЕНА:</b></p>
+                                            <p class="buket_price">
+                                                {{ product.price }} ₽
+                                            </p>
+                                        </div>
+                                        <div class="buket_form_col2">
+                                            <p><b>Кол-во:</b></p>
+                                            <p class="buket_form_input">
+                                                <input type="number" name="amount" id="number" class="buket_amount" min="1" max="1001" value="1">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="buket_form_button align-left">
+                                        <button type="submit" id="submit-btn" class="btn bg-black buy btn-290" data-product_id = "{{ product.id }}">Добавить в корзину</button>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
+
+
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-lg-6">-->
+<!--                {% for image_item in product.productimage_set.all %}-->
+<!--                <div class="product-image-item">-->
+<!--                    <img src='{{ image_item.image.url }}' class="img-fluid">-->
+<!--                </div>-->
+<!--                {% endfor %}-->
+<!--            </div>-->
+<!--            <div class="col-lg-6">-->
+<!--                <h1 class="text-center">-->
+<!--                    {{ product.name }}-->
+<!--                </h1>-->
+<!--                <div class="">-->
+<!--                    <p>-->
+<!--                        Price: {{ product.price }}-->
+<!--                    </p>-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash;Nav tabs&ndash;&gt;-->
+<!--                <ul class="nav nav-tabs" id="myTab" role="tablist">-->
+<!--                  <li class="nav-item">-->
+<!--                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#description" role="tab" aria-controls="home" aria-selected="true">-->
+<!--                        Описание-->
+<!--                    </a>-->
+<!--                  </li>-->
+<!--                  <li class="nav-item">-->
+<!--                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#delivery" role="tab" aria-controls="profile" aria-selected="false">-->
+<!--                        Доставка-->
+<!--                    </a>-->
+<!--                  </li>-->
+<!--                  <li class="nav-item">-->
+<!--                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>-->
+<!--                  </li>-->
+<!--                </ul>-->
+
+<!--&lt;!&ndash;                Tab content&ndash;&gt;-->
+<!--                <div class="tab-content product-description-tabs" id="myTabContent">-->
+<!--                  <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="home-tab">-->
+<!--                      {{ product.description }}-->
+<!--                  </div>-->
+<!--                  <div class="tab-pane fade" id="delivery" role="tabpanel" aria-labelledby="profile-tab">-->
+<!--                      <h3>Как мы делаем доставку?</h3>-->
+<!--                  </div>-->
+<!--                  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <form id="form-buying-product" class="form-inline" action="{% url 'basket_adding' %}"> {% csrf_token %}-->
+<!--                        <div class="form-group">-->
+<!--                            <input type="number" class="form-control" name="number" id="number">-->
+<!--                        </div>-->
+<!--                        <div class="form-group">-->
+<!--                            <button class="btn btn-success btn-buy" type="submit" id="submit-btn"-->
+<!--                                    data-product_id = "{{ product.id }}">-->
+<!--                                Купить-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
     
 {% endblock %}

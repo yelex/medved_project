@@ -17,7 +17,7 @@ def basket_adding(request):
     product_id = int(data.get("product_id"))
     nmb = int(data.get("nmb"))
     is_delete = data.get("is_delete")
-    # print('product_id: {}\nnmb: {}\nis_delete: {}'.format(product_id, nmb, is_delete))
+    # print('product_id: {}\nmb: {}\nis_delete: {}'.format(product_id, nmb, is_delete))
 
     if is_delete == 'true':
         # print('im here')

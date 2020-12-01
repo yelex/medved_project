@@ -232,6 +232,7 @@ html, body {
   color: #3b3b3b;
   text-decoration: none;
   font-size: 24px;
+  font-weight: 100;
   padding-top: 0px;
   line-height: 18px;
   padding-bottom: 5px;
@@ -490,6 +491,7 @@ html, body {
   padding: 0px 0 0px;
   font-size: 0;
   margin-top: 26px;
+  margin-bottom: 26px;
 }
 
 .head_hr_sm {
@@ -516,13 +518,12 @@ html, body {
   font-size: 36px;
   padding: 0 20px 20px 0;
   z-index: 19;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .buket_middle {
-  width: 100%;
-  float: left;
-  margin-bottom: 35px;
+  display: inline-block;
+  width: 50%;
 }
 
 .buket_col {
@@ -530,10 +531,139 @@ html, body {
   width: 50%;
 }
 
+.buket_col_full {
+  width: 100%;
+}
+
 .buket_col, .buket_col_full {
+  display: inline-block;
+  width: 100%;
+  font-size: 16px;
+  vertical-align: top;
+}
+
+.buket_form {
+  background: #fff;
+  padding: 30px 30px 15px;
+  border-radius: 3px;
+  border: 1px #e9e9e9 solid;
+}
+
+.buket_form_white_border {
+  background: #ffffff;
+  padding: 30px 30px 15px;
+  border-radius: 3px 3px 0 0;
+  border: 1px #e9e9e9 solid;
+}
+
+.buket_form_info {
+  padding: 0 0 25px;
+}
+
+.buket_form_top_desc {
+  padding: 0 0 15px 0;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.buket_form_top_desc b {
+  display: block;
+  font-size: 13px;
+  padding-bottom: 5px;
+}
+
+.buket_form_top_desc span {
+  color: #777;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.buket_form_top_desc_short {
+  position: relative;
+  padding: 0 0 15px 0;
+  font-size: 13px;
+  line-height: 1.2;
+  height: auto;
+  overflow: visible;
+}
+
+.buket_form_top_desc_short b {
+  display: block;
+  font-size: 13px;
+  padding-bottom: 5px;
+}
+
+.buket_form_top_desc_short span {
+  color: #777;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.buket_form_price {
+  font-size: 0;
+  margin-bottom: 30px;
+}
+
+.buket_form p {
+  font-size: 13px;
+  line-height: 1.25;
+  margin: 5px 0 0;
+}
+
+.buket_form_price .buket_price {
+  font-size: 36px;
+  color: #3b3b3b;
+  margin-top: 15px;
+  font-weight: 500;
+  white-space: normal;
+}
+
+.buket_form_col1 {
+  width: 50%;
+}
+
+.buket_form_col2 {
+  width: 50%;
+}
+
+.buket_form_col1, .buket_form_col2 {
   display: inline-block;
   font-size: 16px;
   vertical-align: top;
+}
+
+.buket_form_price p {
+  margin: 0 0 5px;
+}
+
+.buket_form_col2 .buket_form_input {
+  margin-top: 5%;
+  padding: 0 30px 0 0;
+}
+
+.buket_form_input input {
+  width: 100%;
+  padding: 0 0 0 15px;
+  background: #fff;
+  border: 1px solid #dcdcdc;
+  height: 45px;
+  line-height: 45px;
+  font-size: 17px;
+  border-radius: 3px;
+}
+
+.buket_filter {
+  display: inline-block;
+  width: 50%;
+  position: relative;
+}
+
+.stop {
+  position: relative;
+}
+
+.abs, .sticky, .stop {
+  z-index: 101;
 }
 
 .buket_img {
@@ -548,6 +678,93 @@ html, body {
   max-width: 570px;
   border-radius: 3px;
   border: 1px #e9e9e9 solid;
+}
+
+.buket_form_button {
+  padding: 20px 0 10px 0;
+  text-align: left;
+}
+
+#buket .buket_form .buket_form_button a,
+#buket .buket_form .buket_form_button button {
+  display: inline-block;
+  margin-bottom: 15px;
+  padding: 0 25px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+#buket .buket_form .buket_form_button .btn-290 {
+  width: 250px;
+}
+
+#buket .buket_form .buket_form_button button.bg-black {
+  background: #a53829;
+}
+
+#buket .buket_form .buket_form_button button.bg-black:hover,
+#buket .buket_form .buket_form_button button.bg-black added-to-cart {
+  background: #fff;
+  color: #a53829;
+  border:  1px solid #a53829;
+}
+
+#buket .buket_form .buket_form_button button {
+  height: 45px;
+  line-height: 45px;
+  background: #67B346;
+  border: 0;
+  border-radius: 3px;
+  margin-right: 15px;
+}
+
+.align-left {
+  text-align: left !important;
+}
+
+#footer {
+  position: relative;
+  background-color: grey;
+  padding: 50px 0 30px;
+  text-align: center;
+}
+
+@media (max-width: 900px) and (min-width: 0px){
+  #buket .buket_col, #buket .buket_col_full {
+    display: block;
+    width: 100%;
+    max-width: 570px;
+    margin: 0 auto;
+    font-size: 16px;
+    vertical-align: top;
+  }
+
+  #buket .buket_middle {
+    width: 100%;
+    float: none;
+    margin-bottom: 0;
+  }
+
+  #buket .buket_filter {
+    width: 100%;
+    float: none;
+    margin-left: 0;
+    margin-bottom: 50px;
+    margin-top: 30px;
+  }
+
+  #buket .buket_img {
+    margin: 0;
+  }
+
+  .buket_form_col2 {
+      margin-left: 10%;
+      width: 40%;
+  }
 }
 
 @media (max-width: 930px) and (min-width: 0){

@@ -55,10 +55,6 @@ html, body {
     padding-top: 20px;
 }
 
-p {
-    white-space: pre-line;
-}
-
 .header-custom {
     font-size: 36px;
 }

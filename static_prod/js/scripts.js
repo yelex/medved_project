@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    var form = $('#form-buying-product');
+    console.log(form);
     function basketUpdating(product_id, nmb, is_delete){
         var form = $('#form-common');
         var data = {};
@@ -78,16 +80,23 @@ $(document).ready(function(){
 //        }
 //        });
 
-    $(".form-buying-product").each(function(){
-        $(this).on('submit', function(e){
+    $("#form-buying-product").submit(function(e){
             console.log('im here2');
             e.preventDefault();
             var nmb = $(this).find('#number').val();
             var submit_btn = $(this).find('#submit-btn');
             var product_id = submit_btn.data('product_id');
             console.log(nmb + " " + product_id);
+            submit_btn.html('<i class="fa fa-check" aria-hidden="true"></i>Добавлено!')
+//            submit_btn.text('');
+            submit_btn.addClass('added-to-cart disabled');
             basketUpdating(product_id, nmb, is_delete=false);
-        })});
+            setTimeout(function(){
+                  console.log('im here button');
+                  submit_btn.removeClass('added-to-cart disabled');
+                  submit_btn.text('Добавить в корзину');
+             }, 2000);
+        });
 
     $('.basket-container').mouseover(function(){
         if ($('#basket_total_nmb').text()!='(0)'){
