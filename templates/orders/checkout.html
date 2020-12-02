@@ -28,12 +28,12 @@
                                     name="product_in_basket_{{ product_in_basket.id }}"></td>
                             <td>
                                 <span class="product-price">
-                                    {{ product_in_basket.price_per_item }}
+                                    {{ product_in_basket.price_per_item|floatformat }} ₽
                                 </span>
                             </td>
                             <td>
                                 <span class="total_product_in_basket_amount">
-                                    {{ product_in_basket.total_price }}
+                                    {{ product_in_basket.total_price|floatformat }} ₽
                                 </span>
                             </td>
                         </tr>
@@ -42,7 +42,7 @@
                 </table>
 
                 <div class="text-right">
-                    <b>Сумма заказа: </b> <span id="total_basket_amount"></span>
+                    <b>Сумма заказа: </b> <span id="total_basket_amount"></span> ₽
                 </div>
                 <hr>
 

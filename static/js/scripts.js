@@ -126,15 +126,15 @@ $(document).ready(function(){
         $('.total_product_in_basket_amount').each(function(){
             total_basket_amount += parseFloat($(this).text());
         });
-        $('#total_basket_amount').text(total_basket_amount.toFixed(2));
+        $('#total_basket_amount').text(total_basket_amount.toFixed());
     };
 
     $(document).on('change', '.product-in-basket-nmb', function () {
         var current_tr = $(this).closest('tr');
         var current_nmb = $(this).val();
         var current_price = parseFloat(current_tr.find('.product-price').text());
-        var total_amount = parseFloat(current_nmb * current_price).toFixed(2);
-        current_tr.find('.total_product_in_basket_amount').text(total_amount);
+        var total_amount = parseFloat(current_nmb * current_price).toFixed();
+        current_tr.find('.total_product_in_basket_amount').text(total_amount + ' ₽');
         calculatingBasketAmount();
     });
 

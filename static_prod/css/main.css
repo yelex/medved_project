@@ -733,6 +733,12 @@ html, body {
   text-align: center;
 }
 
+@media (max-width: 380px) and (min-width: 0px){
+  table {
+    font-size: 10px;
+  }
+}
+
 @media (max-width: 900px) and (min-width: 0px){
   #buket .buket_col, #buket .buket_col_full {
     display: block;
