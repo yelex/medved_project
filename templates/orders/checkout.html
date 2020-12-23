@@ -6,9 +6,10 @@
 
 
     <div class="container py-5">
-        <div class="col-lg-8 offset-lg-2">
+        <div class="col-sm-8 offset-sm-2">
 
             <form method='post'> {% csrf_token %}
+            {{ form.errors }}
 <!--                Корзина-->
                 <table class="table text-left">
                     <thead>
@@ -67,14 +68,14 @@
                         <h3 class="text-left py-2">Способ получения</h3>
                         <div class="form-group">
                             <div class="form-check form-check-custom">
-                              <input class="form-check-input custom-bottom" type="radio" name="{{ form.is_delivery.html_name }}" id="delivery1" value="true" checked>
-                              <label class="form-check-label" for="delivery1">
+                              <input class="form-check-input custom-bottom" type="radio" name="{{ form.is_delivery.html_name }}" id="delivery_true" value="true" checked>
+                              <label class="form-check-label" for="delivery_true">
                                 Доставка курьером
                               </label>
                             </div>
                             <div class="form-check form-check-custom">
-                              <input class="form-check-input custom-bottom" type="radio" name="{{ form.is_delivery.html_name }}" id="delivery2" value="false">
-                              <label class="form-check-label" for="delivery2">
+                              <input class="form-check-input custom-bottom" type="radio" name="{{ form.is_delivery.html_name }}" id="delivery_false" value="false">
+                              <label class="form-check-label" for="delivery_false">
                                 Самовывоз (около м. Алексеевская)
                               </label>
                             </div>
@@ -93,7 +94,7 @@
                                     <label for="client_name">Имя:</label>
                                         <input type="text" class="form-control"
                                         name="{{ form.name.html_name }}" id="client_name"
-                                        value="{{ request.POST.name }}">
+                                        value="">
                                         <span class="form-error">{{ form.name.errors }}</span>
                                 </div>
                             </div>
@@ -101,15 +102,15 @@
                                 <div class="form-group">
                                     <label for="phone">Номер телефона:</label>
                                         <input type="text" class="form-control" name="{{ form.phone.html_name }}"
-                                        id="phone" value="{{ request.POST.phone }}" >
+                                        id="phone" value="" >
                                         <span class="form-error">{{ form.phone.errors }}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="form-check form-check-custom">
-                          <input class="form-check-input custom-bottom" type="checkbox" value="false"
-                                 id="otherPerson" name="is_other_person">
-                          <label class="form-check-label" for="otherPerson">
+                          <input class="form-check-input form-check-custom__custom-button" type="checkbox" value="false"
+                                 id="otherPerson" name="{{ form.is_another_person.html_name }}">
+                          <label class="form-check-label form-check-custom__label" for="otherPerson">
                             Получатель - другой человек
                           </label>
                         </div>
@@ -119,38 +120,39 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="delivery-container">
-                            <h3 class="text-left py-2">Доставка</h3>
+                            <h3 class="delivery-container__heading text-left py-2">Доставка</h3>
                             <div class="row">
                                 <div class="col-lg-6 name_other d-none">
                                     <div class="form-group">
                                         <label for="name_other">Имя получателя:</label>
                                         <input type="text" class="form-control"
                                         name="{{ form.name_other.html_name }}" id="name_other"
-                                        value="{{ request.POST.name_other }}">
+                                        value="">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 phone_other d-none">
                                     <div class="form-group">
                                         <label for="phone_other">Номер телефона получателя:</label>
                                         <input type="text" class="form-control" name="{{ form.phone_other.html_name }}"
-                                        id="phone_other" value="{{ request.POST.phone_other }}">
+                                        id="phone_other" value="">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="delivery_address">
+                                <label for="delivery_address" class="delivery_address_label">
                                     Адрес доставки: город, улица, номер дома, подъезда, квартиры
                                 </label>
                                 <input type="text" class="form-control"
                                 name="{{ form.delivery_address.html_name }}" id="delivery_address"
-                                value="{{ request.POST.delivery_address }}">
+                                value="">
+                                <input type="text" readonly class="form-control-plaintext d-none" id="pickup_address" value="г. Москва, Рижская площадь 9 стр.4">
                                 <span class="form-error">{{ form.delivery_address.errors }}</span>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group date">
-                                        <label for="delivery_date">
+                                        <label for="delivery_date" class="delivery_date_label">
                                             Дата доставки:
                                         </label>
                                         <input type="text" class="form-control"
@@ -160,7 +162,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="delivery_time">Время доставки:</label>
+                                        <label for="delivery_time" class="delivery_time_label">Время доставки:</label>
                                         <select class="form-control" id="delivery_time">
                                         </select>
                                     </div>

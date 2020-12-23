@@ -3,7 +3,10 @@ from django.http import JsonResponse
 from orders.models import ProductInBasket, ProductInOrder, Order
 from orders.forms import CheckoutContactForm
 from django.contrib.auth.models import User
-
+import dateutil.parser
+import json
+from orders.tools.telegram_handler import send_message
+from datetime import datetime
 
 def basket_adding(request):
     return_dict = dict()
@@ -71,34 +74,78 @@ def checkout(request):
     products_in_basket = ProductInBasket.objects.filter(session_key=session_key, is_active=True)
     form = CheckoutContactForm(request.POST or None)
     if request.POST:
+        print('im in checkout')
         print(request.POST)
-        # if form.is_valid():
-        #     data = request.POST
-        #     name = data["name"]
-        #     phone = data["phone"]
-        #     # print('yes')
-        #     user, created = User.objects.get_or_create(username=phone, defaults={"first_name": name})
-        #
-        #     order = Order.objects.create(user=user, customer_phone=phone, customer_name=name, status_id=1)
-        #
-        #     for name, value in data.items():
-        #         if name.startswith('product_in_basket'):
-        #             product_in_basket_id = name.split('_')[-1]
-        #             product_in_basket = ProductInBasket.objects.get(id=product_in_basket_id)
-        #
-        #             product_in_basket.nmb = value
-        #             product_in_basket.order = order
-        #             product_in_basket.save(force_update=True)
-        #             ProductInOrder.objects.create(product=product_in_basket.product, nmb=product_in_basket.nmb,
-        #                                           price_per_item=product_in_basket.price_per_item,
-        #                                           total_price=product_in_basket.total_price,
-        #                                           order=order)
+        if form.is_valid():
+            data = request.POST
 
-            # return render(request, 'orders/success_checkout.html', context=locals())
-        return render(request, 'orders/checkout.html', context=locals())
-        # else:
-        #     print('Form is not valid')
-        #     return render(request, 'orders/checkout.html', context=locals())
+            name = data["name"]
+            phone = data["phone"]
+            delivery_date = dateutil.parser.parse(data["delivery_date"])
+            note = data["note"]
+            is_delivery = json.loads(data["is_delivery"])
+            is_another_person = data.get('is_another_person', False)
+            if is_another_person != False:
+                is_another_person = True
+            name_other = data["name_other"]
+            phone_other = data["phone_other"]
+            delivery_address = data["delivery_address"]
+            comments = data["comments"]
+            print('is_delivery:', is_delivery, '\nis_another_person:', is_another_person)
+            user, created = User.objects.get_or_create(username=phone, defaults={"first_name": name})
+        
+            order = Order.objects.create(user=user, customer_phone=phone, customer_name=name, 
+                                        delivery_date=delivery_date, note=note, is_delivery=is_delivery, 
+                                        is_another_person=is_another_person, recipient_name = name_other, recipient_phone=phone_other, 
+                                        delivery_address=delivery_address, comments=comments, status_id=1)
+        
+            for name, value in data.items():
+                if name.startswith('product_in_basket'):
+                    product_in_basket_id = name.split('_')[-1]
+                    product_in_basket = ProductInBasket.objects.get(id=product_in_basket_id)
+        
+                    product_in_basket.nmb = value
+                    product_in_basket.order = order
+                    product_in_basket.save(force_update=True)
+                    ProductInOrder.objects.create(product=product_in_basket.product, nmb=product_in_basket.nmb,
+                                                  price_per_item=product_in_basket.price_per_item,
+                                                  total_price=product_in_basket.total_price,
+                                                  order=order)
+            if is_delivery:
+                pickup_method = 'Доставка'
+            else:
+                pickup_method = 'Самовывоз'
+            
+            if is_another_person:
+                pickup_person = 'Другой человек'
+            else:
+                pickup_person = 'Сам заказчик'
+            
+            
+
+            all_products_in_order = ProductInOrder.objects.filter(order=order, is_active=True)
+
+            positions_description = ''
+            for item in all_products_in_order:
+                positions_description += f"""\n{item.product.name} - {item.nmb} шт. по {item.price_per_item} руб. =  {item.total_price} руб."""
+
+            send_message(f"""Новый заказ!\nИмя заказчика: {data["name"]}
+            \nСумма заказа: {order.total_order_price} руб.
+            \nПозиции: {positions_description}
+            \nТелефон заказчика: {phone}
+            \nСпособ получения: {pickup_method}
+            \nПолучатель: {pickup_person}
+            \n{"Имя получателя: %".format(name_other) if is_another_person else ""}
+            \n{"Номер телефона получателя: %".format(phone_other) if is_another_person else ""}
+            \n{"Адрес доставки: %".format(delivery_address) if is_delivery else ""}
+            \nДата получения: {delivery_date}
+            \n{"Комментарий: %".format(comments) if comments!="" else ""}""")
+
+            return render(request, 'orders/success_checkout.html', context=locals())
+        # return render(request, 'orders/checkout.html', context=locals())
+        else:
+            print('Form is not valid')
+            return render(request, 'orders/checkout.html', context=locals())
 
     else:
         return render(request, 'orders/checkout.html', context=locals())
