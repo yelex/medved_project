@@ -3,6 +3,7 @@ from products.models import Product
 from django.db.models import signals
 from django.contrib.auth.models import User
 from utils.main import disable_for_loaddata
+from datetime import datetime
 # Create your models here.
 
 
@@ -32,7 +33,7 @@ class Order(models.Model):
     is_another_person = models.BooleanField(default=True)
     recipient_name = models.CharField(max_length=200, blank=True, null=True)
     recipient_phone = models.CharField(max_length=48, blank=True, null=True)
-    delivery_date = models.DateField()
+    delivery_date = models.DateField(default='2010-01-01')
     delivery_address = models.CharField(max_length=128, blank=True, null=True)
 
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
