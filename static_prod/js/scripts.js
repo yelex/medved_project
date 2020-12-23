@@ -53,6 +53,26 @@ $(document).ready(function(){
         }
         });
 
+   $('#delivery_true').change(function(){
+    console.log(this.checked);
+    $('.delivery-container__heading').text('Доставка');
+    $('.delivery_address_label').text('Адрес доставки: город, улица, номер дома, подъезда, квартиры');
+    $('.delivery_date_label').text('Дата доставки:');
+    $('.delivery_time_label').text('Время доставки:');
+    $('#pickup_address').addClass('d-none');
+    $('#delivery_address').removeClass('d-none');
+    });
+
+    $('#delivery_false').change(function(){
+    console.log(this.checked);
+    $('.delivery-container__heading').text('Самовывоз');
+    $('.delivery_address_label').text('Адрес самовывоза:');
+    $('.delivery_date_label').text('Дата самовывоза:');
+    $('.delivery_time_label').text('Время самовывоза:');
+    $('#pickup_address').removeClass('d-none');
+    $('#delivery_address').addClass('d-none');
+    });
+
    $('#otherPerson').change(function() {
         if(this.checked) {
               $(this).val('true');
@@ -65,20 +85,6 @@ $(document).ready(function(){
               $('.phone_other').addClass('d-none');
         }
         });
-
-//  FIXME самовывоз
-//   $('#delivery2').change(function() {
-//        if(this.checked) {
-//              $(this).val('true');
-//              $('.name_other').removeClass('d-none');
-//              $('.phone_other').removeClass('d-none');
-//        }
-//        else {
-//              $(this).val('false');
-//              $('.name_other').addClass('d-none');
-//              $('.phone_other').addClass('d-none');
-//        }
-//        });
 
     $("#form-buying-product").submit(function(e){
             console.log('im here2');
