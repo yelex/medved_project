@@ -135,11 +135,11 @@ def checkout(request):
             \nТелефон заказчика: {phone}
             \nСпособ получения: {pickup_method}
             \nПолучатель: {pickup_person}
-            \n{"Имя получателя: %".format(name_other) if is_another_person else ""}
-            \n{"Номер телефона получателя: %".format(phone_other) if is_another_person else ""}
-            \n{"Адрес доставки: %".format(delivery_address) if is_delivery else ""}
+            \n{"Имя получателя: {}".format(name_other) if is_another_person else ""}
+            \n{"Номер телефона получателя: {}".format(phone_other) if is_another_person else ""}
+            \n{"Адрес доставки: {}".format(delivery_address) if is_delivery else ""}
             \nДата получения: {delivery_date}
-            \n{"Комментарий: %".format(comments) if comments!="" else ""}""")
+            \n{"Комментарий: {}".format(comments) if comments!="" else ""}""")
 
             return render(request, 'orders/success_checkout.html', context=locals())
         # return render(request, 'orders/checkout.html', context=locals())
