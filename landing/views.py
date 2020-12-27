@@ -44,3 +44,6 @@ def flower_box(request):
                                                  product__category__name='коробки')
     return render(request, 'landing/flowers_box.html', context=locals())
 
+def delivery(request):
+    return render(request, 'landing/delivery.html')
+

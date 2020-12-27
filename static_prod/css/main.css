@@ -7,8 +7,10 @@ html, body {
 }
 
 #main {
+  display: block;
   background-color: #d6dcdf;
   position: relative;
+  min-height: 1000px;
 }
 
 #container {
@@ -246,6 +248,11 @@ html, body {
 
 #mobile_menu.show {
   left: 0;
+}
+
+.section {
+  padding-top: 2%;
+  font-size: 14px;
 }
 
 .cart-link__bubble--visible {
